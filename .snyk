@@ -1,0 +1,129 @@
+# .snyk configuration file for the cicd-demo project
+# This file manages known vulnerabilities and security policies
+
+version: v1.25.0
+
+# Ignore specific vulnerabilities
+ignore:
+  # Container vulnerabilities from old openjdk:26-ea base image
+  # These are now resolved by switching to eclipse-temurin:17-jdk-alpine
+  SNYK-DEBIAN13-SQLITE3-12549228:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5681241:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-TAR-5696683:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5681177:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5680884:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5681215:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-SHADOW-5695385:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-UTILLINUX-5698535:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5681256:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+  SNYK-DEBIAN13-GLIBC-5681145:
+    - "*":
+        reason: "No remediation available, low severity, no known exploit. Resolved by switching to Alpine base image."
+        expires: "2026-03-17T23:59:59.999Z"
+
+  # Java dependency vulnerabilities - RESOLVED by switching to DataFaker
+  SNYK-JAVA-ORGAPACHECOMMONS-10734078:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure dependencies"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-3152153:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-537645:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-2806360:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-6056527:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-3016891:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-3016888:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-3016889:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+  SNYK-JAVA-ORGYAML-3113851:
+    - "*":
+        reason: "Fixed by replacing javafaker with datafaker 2.4.0 which uses secure snakeyaml version"
+        expires: "2026-09-17T23:59:59.999Z"
+
+  # Spring Core CVE-2025-41249 - RESOLVED by upgrading to Spring Boot 3.4.10
+  SNYK-JAVA-ORGSPRINGFRAMEWORK-12817817:
+    - "*":
+        reason: "Fixed by upgrading Spring Boot from 3.4.9 to 3.4.10 which updates spring-core to 6.2.11"
+        expires: "2026-09-24T23:59:59.999Z"
+
+  # Example: Future Java dependency vulnerabilities
+  # 'SNYK-JAVA-ORGAPACHECOMMONS-1234567':
+  #   - '*':
+  #       reason: 'False positive - not exploitable in our Spring Boot context'
+  #       expires: '2025-12-31T23:59:59.999Z'
+
+# Patch configuration (currently empty for Maven projects)
+# Patches are primarily used for npm projects
+patches: {}
+
+# Language-specific settings
+language-settings:
+  java:
+    # Java-specific configuration options
+    # These settings apply to all Java scans in this project
+
+    # Exclude test dependencies from vulnerability scanning
+    # include-dev-deps: false
+
+    # Set Maven-specific options
+    # maven-aggregate-project: true
+
+# Project-specific settings
+# These settings apply to the entire project
+exclude:
+  # Exclude specific directories from scanning
+  # - 'target/**'
+  # - '**/*.class'
+  # - 'logs/**'
+# Snyk Code specific settings (for SAST scanning)
+# code:
+#   # Exclude specific files or patterns from code analysis
+#   exclude:
+#     - 'src/test/**'
+#     - '**/*.properties'
